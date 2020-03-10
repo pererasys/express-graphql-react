@@ -14,10 +14,6 @@ const messageSchema = new Schema({
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  },
-  timestamp: {
-    type: Date,
-    required: true
   }
 });
 

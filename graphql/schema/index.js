@@ -45,7 +45,6 @@ input MessageInput {
 type RootQuery {
     chats: [Chat!]!
     messages: [Message!]!
-    createUser(username: String!): AuthData!
 }
 
 type RootMutation {

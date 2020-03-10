@@ -21,7 +21,12 @@ module.exports = {
       const token = jwt.sign({ userId: user.id }, "somesupersecretkey", {
         expiresIn: "7 days"
       });
-      return { userId: result.id, token: token, tokenExpiration: 7 };
+      return {
+        _id: result._id,
+        username: result.username,
+        token: token,
+        tokenExpiration: 7
+      };
     } catch (err) {
       throw err;
     }

@@ -11,10 +11,6 @@ const chatSchema = new Schema({
     type: String,
     required: false
   },
-  timestamp: {
-    type: Date,
-    required: true
-  },
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: "User"

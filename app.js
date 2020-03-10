@@ -4,6 +4,10 @@ const graphqlHttp = require("express-graphql");
 const mongoose = require("mongoose");
 const auth = require("./middleware/authentication");
 
+// GraphQL config
+const graphQlSchema = require("./graphql/schema/index");
+const graphQlResolvers = require("./graphql/resolvers/index");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -23,21 +27,12 @@ app.use(auth);
 app.use(
   "/graphql",
   graphqlHttp({
-    schema: null,
-    rootValue: null,
+    schema: graphQlSchema,
+    rootValue: graphQlResolvers,
     graphiql: true
   })
 );
 
-app.listen(3000);
+app.listen(3001);
 
-mongoose
-  .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-ntrwp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`
-  )
-  .then(() => {
-    app.listen(8000);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+mongoose.connect("mongodb://localhost/test", { useNewUrlParser: true });
