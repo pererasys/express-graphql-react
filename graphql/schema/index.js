@@ -1,5 +1,9 @@
-// Written by Andrew Perera
-// Copyright 2020
+/*
+
+Written by Andrew Perera
+Copyright 2020
+
+*/
 
 const { gql } = require("apollo-server-express");
 
@@ -16,6 +20,7 @@ type Message {
   chat: Chat!
   message: String!
   timestamp: String!
+  createdBy: User!
 }
 
 type User {
@@ -46,7 +51,7 @@ input MessageInput {
 
 type Query {
     chats: [Chat!]!
-    messages: [Message!]!
+    messages(chatId: String!): [Message!]!
 }
 
 type Mutation {

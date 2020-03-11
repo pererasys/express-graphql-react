@@ -1,5 +1,9 @@
-// Written by Andrew Perera
-// Copyright 2020
+/*
+
+Written by Andrew Perera
+Copyright 2020
+
+*/
 
 const Chat = require("../../models/chat");
 const { transformChat } = require("./transform");
@@ -18,9 +22,7 @@ module.exports = {
         }
         const { name, description } = args.chatInput;
 
-        const existingChat = await Chat.findOne({
-          name
-        });
+        const existingChat = await Chat.findOne({ name });
         if (existingChat) {
           throw new UserInputError("A chat with this name already exists.");
         }

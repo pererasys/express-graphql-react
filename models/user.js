@@ -1,5 +1,9 @@
-// Written by Andrew Perera
-// Copyright 2020
+/*
+
+Written by Andrew Perera
+Copyright 2020
+
+*/
 
 const mongoose = require("mongoose");
 

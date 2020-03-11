@@ -1,11 +1,17 @@
-// Written by Andrew Perera
-// Copyright 2020
+/*
+
+Written by Andrew Perera
+Copyright 2020
+
+*/
 
 const Message = require("../../models/message");
 const { transformMessage } = require("./transform");
-const { PubSub, AuthenticationError } = require("apollo-server-express");
-
-const pubsub = new PubSub();
+const {
+  AuthenticationError,
+  UserInputError
+} = require("apollo-server-express");
+const pubsub = require("../../pubsub");
 
 const NEW_MESSAGE = "NEW_MESSAGE";
 
@@ -13,6 +19,7 @@ module.exports = {
   Mutation: {
     createMessage: async (root, args, context) => {
       try {
+        const { req } = context;
         if (!req.isAuthenticated) {
           throw new AuthenticationError("Unauthenticated request.");
         }
@@ -26,7 +33,12 @@ module.exports = {
         });
 
         const result = await message.save();
-        return result;
+
+        const transformedResult = transformMessage(result);
+
+        pubsub.publish(NEW_MESSAGE, { newMessage: transformedResult });
+
+        return transformedResult;
       } catch (err) {
         throw err;
       }
@@ -35,7 +47,13 @@ module.exports = {
   Query: {
     messages: async (root, args, context) => {
       try {
-        const messages = await Message.find();
+        const { req } = context;
+        if (!req.isAuthenticated) {
+          throw new AuthenticationError("Unauthenticated request.");
+        }
+        const { chatId } = args;
+        if (!chatId) throw new UserInputError("Must provide a chat ID.");
+        const messages = await Message.find({ chat: chatId });
         return messages.map(message => {
           return transformMessage(message);
         });
