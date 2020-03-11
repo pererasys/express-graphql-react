@@ -1,29 +1,23 @@
-// Written by Andrew Perera
-// Copyright 2020
+/*
+
+Written by Andrew Perera
+Copyright 2020
+
+*/
 
 import React from "react";
-import { connect } from "react-redux";
-import { Router as DOMRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Router as DOMRouter, Route, Switch } from "react-router-dom";
 import history from "../history";
 import CreateUser from "../pages/CreateUser";
+import Chat from "../pages/Chat";
 
-const Router = props => {
-  const { token } = props;
+export default function() {
   return (
     <DOMRouter history={history}>
       <Switch>
-        {token && <Redirect from="/" to="chat" />}
         <Route path="/" exact component={CreateUser} />
-        <Route path="/chat" render={() => null} />
+        <Route path="/chat" component={Chat} />
       </Switch>
     </DOMRouter>
   );
-};
-
-const mapStateToProps = state => {
-  return {
-    token: state.auth.token
-  };
-};
-
-export default connect(mapStateToProps)(Router);
+}

@@ -2,6 +2,18 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Sen:400,700,800&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Sen:400,700,800&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Sen:400,700,800&display=swap");
+span {
+  margin: 0px;
+  font-family: "Roboto", serif;
+  color: #999999;
+}
+
+p {
+  margin: 0px;
+  font-family: "Roboto", serif;
+  color: #999999;
+}
+
 .primary-text {
   color: #3f01bc !important;
 }
@@ -10,12 +22,16 @@
   color: #01d70f !important;
 }
 
+.error-text {
+  color: #d80101 !important;
+}
+
 .text-center {
   text-align: center;
 }
 
 h1 {
-  margin: 5px 0px 5px 0px;
+  margin: 0px;
   font-family: "Sen", serif;
   font-weight: 700;
   font-size: 30px;
@@ -23,7 +39,7 @@ h1 {
 }
 
 h2 {
-  margin: 5px 0px 5px 0px;
+  margin: 0px;
   font-family: "Sen", serif;
   font-weight: 700;
   font-size: 24px;
@@ -31,7 +47,7 @@ h2 {
 }
 
 h3 {
-  margin: 5px 0px 5px 0px;
+  margin: 0px;
   font-family: "Sen", serif;
   font-weight: 500;
   font-size: 18px;
@@ -39,7 +55,7 @@ h3 {
 }
 
 h4 {
-  margin: 5px 0px 5px 0px;
+  margin: 0px;
   font-family: "Sen", serif;
   font-weight: 500;
   font-size: 16px;
@@ -47,7 +63,7 @@ h4 {
 }
 
 h5 {
-  margin: 5px 0px 5px 0px;
+  margin: 0px;
   font-family: "Roboto", serif;
   font-weight: 600;
   font-size: 16;
@@ -70,13 +86,23 @@ h5 {
   color: #999999;
 }
 
+body {
+  margin: 0;
+}
+
 html,
 body,
 #root,
-#root > div,
-.full-screen {
+#root > div {
   height: 100%;
   background-color: #181818;
+}
+
+.full {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
 }
 
 .flexr {
@@ -101,6 +127,28 @@ body,
   background-color: #181818;
 }
 
+.flexr-reverse {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  background-color: #181818;
+}
+
+.flexc-reverse {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  background-color: #181818;
+}
+
 .center {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -108,6 +156,12 @@ body,
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.j-center {
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
 }
 
 .j-between {
@@ -125,6 +179,12 @@ body,
 .j-around {
   -ms-flex-pack: distribute !important;
       justify-content: space-around !important;
+}
+
+.a-center {
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
 }
 
 .a-between {
@@ -157,8 +217,14 @@ body,
 
 .bottom-border {
   border-bottom-style: solid;
-  border-bottom-width: 0.5;
+  border-bottom-width: 0.5px;
   border-bottom-color: #222222;
+}
+
+.right-border {
+  border-right-style: solid;
+  border-right-width: 0.5px;
+  border-right-color: #222222;
 }
 
 .alt-background {
@@ -293,7 +359,12 @@ input[type="text"] {
   cursor: pointer;
 }
 
-.btn:hover {
+.btn:disabled,
+button[disabled] {
+  opacity: 0.5;
+}
+
+.btn:focus {
   opacity: 0.9;
   -webkit-transition: 0.25s;
   transition: 0.25s;

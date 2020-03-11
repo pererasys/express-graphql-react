@@ -22,7 +22,12 @@
   cursor: pointer;
 }
 
-.btn:hover {
+.btn:disabled,
+button[disabled] {
+  opacity: 0.5;
+}
+
+.btn:focus {
   opacity: 0.9;
   transition: 0.25s;
 }

@@ -43,6 +43,10 @@ module.exports = {
   Query: {
     chats: async (root, args, context) => {
       try {
+        const { req } = context;
+        if (!req.isAuthenticated) {
+          throw new AuthenticationError("Unauthenticated request.");
+        }
         const chats = await Chat.find();
         return chats.map(chat => {
           return transformChat(chat);
