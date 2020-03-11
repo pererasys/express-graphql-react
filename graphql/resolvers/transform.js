@@ -1,3 +1,6 @@
+// Written by Andrew Perera
+// Copyright 2020
+
 const DataLoader = require("dataloader");
 
 const User = require("../../models/user");
@@ -23,9 +26,19 @@ const transformChat = chat => {
   return {
     ...chat._doc,
     _id: chat.id,
-    createdAt: dateToString(chat.createdAt),
+    timestamp: dateToString(chat.timestamp),
     createdBy: user.bind(this, chat.createdBy)
   };
 };
 
+const transformMessage = message => {
+  return {
+    ...message._doc,
+    _id: message.id,
+    timestamp: dateToString(message.timestamp),
+    createdBy: user.bind(this, message.createdBy)
+  };
+};
+
 exports.transformChat = transformChat;
+exports.transformMessage = transformMessage;

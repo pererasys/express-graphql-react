@@ -1,0 +1,9 @@
+.new-user-content {
+  max-width: 100%;
+  min-width: 300px;
+}
+
+.new-user-form {
+  display: flex;
+  flex-direction: column;
+}

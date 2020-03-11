@@ -1,0 +1,36 @@
+@import "./variables";
+@import "./fonts";
+
+.btn {
+  height: 35px;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin: 5px 0px 5px 0px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: $roboto;
+  color: $text;
+  -webkit-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transition: 0.25s;
+}
+
+.btn-primary {
+  background-color: $primary;
+}
+
+.btn-accent {
+  background-color: $accent;
+}

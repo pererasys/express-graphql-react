@@ -1,13 +1,14 @@
-const { buildSchema } = require("graphql");
+// Written by Andrew Perera
+// Copyright 2020
 
-module.exports = buildSchema(`
+const { gql } = require("apollo-server-express");
+
+module.exports = gql(`
 type Chat {
     _id: ID!
     name: String!
     description: String!
-    createdBy: User!
-    createdAt: String!
-    updatedAt: String!
+    timestamp: String!
 }
 
 type Message {
@@ -24,6 +25,7 @@ type User {
 
 type AuthData {
   userId: ID!
+  username: String!
   token: String!
   tokenExpiration: Int!
 }
@@ -42,19 +44,24 @@ input MessageInput {
   chatId: String!
 }
 
-type RootQuery {
+type Query {
     chats: [Chat!]!
     messages: [Message!]!
 }
 
-type RootMutation {
-    createUser(userInput: UserInput): User
+type Mutation {
+    createUser(userInput: UserInput): AuthData
     createChat(chatInput: ChatInput): Chat
     createMessage(messageInput: MessageInput): Message
 }
 
+type Subscription {
+  newMessage: Message!
+}
+
 schema {
-    query: RootQuery
-    mutation: RootMutation
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
 }
 `);
