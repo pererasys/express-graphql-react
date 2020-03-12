@@ -54,7 +54,9 @@ module.exports = {
         }
         const { chatId } = args;
         if (!chatId) throw new UserInputError("Must provide a chat ID.");
-        const messages = await Message.find({ chat: chatId });
+        const messages = await Message.find({ chat: chatId }).sort({
+          timestamp: -1
+        });
         return messages.map(message => {
           return transformMessage(message);
         });
