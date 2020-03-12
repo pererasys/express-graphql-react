@@ -12,6 +12,7 @@ const {
   UserInputError
 } = require("apollo-server-express");
 const pubsub = require("../../pubsub");
+const { withFilter } = require("graphql-subscriptions");
 
 const NEW_MESSAGE = "NEW_MESSAGE";
 
@@ -64,7 +65,12 @@ module.exports = {
   },
   Subscription: {
     newMessage: {
-      subscribe: () => pubsub.asyncIterator([NEW_MESSAGE])
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(NEW_MESSAGE),
+        ({ newMessage }, { chatId }) => {
+          return newMessage.chat.toString() === chatId;
+        }
+      )
     }
   }
 };

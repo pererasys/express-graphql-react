@@ -14,7 +14,7 @@ const Message = ({ message: messageObj }) => {
     createdBy: { username }
   } = messageObj;
   return (
-    <div className="flexr j-between a-center p-2">
+    <div className="flexr j-between a-center p-3">
       <div>
         <h4>{username}</h4>
         <p className="body-text-2">{message}</p>

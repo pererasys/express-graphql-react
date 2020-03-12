@@ -61,12 +61,6 @@ type Mutation {
 }
 
 type Subscription {
-  newMessage: Message!
-}
-
-schema {
-    query: Query
-    mutation: Mutation
-    subscription: Subscription
+  newMessage(chatId: String!): Message!
 }
 `);

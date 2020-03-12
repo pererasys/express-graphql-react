@@ -96,6 +96,12 @@ body,
   border-bottom-color: $border;
 }
 
+.top-border {
+  border-top-style: solid;
+  border-top-width: 0.5px;
+  border-top-color: $border;
+}
+
 .right-border {
   border-right-style: solid;
   border-right-width: 0.5px;

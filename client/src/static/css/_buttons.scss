@@ -10,7 +10,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 2.5px;
   text-transform: uppercase;
   margin: 5px 0px 5px 0px;
   font-size: 18px;
@@ -22,9 +22,17 @@
   cursor: pointer;
 }
 
+.btn-no-style {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .btn:disabled,
 button[disabled] {
   opacity: 0.5;
+  cursor: initial !important;
 }
 
 .btn:focus {

@@ -20,6 +20,7 @@ export const GET_CHATS = gql`
 export const GET_MESSAGES = gql`
   query Messages($chatId: String!) {
     messages(chatId: $chatId) {
+      _id
       message
       timestamp
       createdBy {

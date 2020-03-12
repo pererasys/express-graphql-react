@@ -5,12 +5,13 @@ Copyright 2020
 
 */
 
-import React from "react";
+import React, { useEffect } from "react";
 import Message from "./Message";
 
-const MessageList = ({ messages }) => {
+const MessageList = ({ messages, subscribeToNewMessages }) => {
+  useEffect(subscribeToNewMessages, []);
   return (
-    <div className="flexc-reverse full">
+    <div style={{ overflowY: "scroll" }} className="flexc-reverse">
       {messages.map((message, index) => (
         <Message message={message} key={index} />
       ))}

@@ -5,7 +5,7 @@
   background-color: $background;
 }
 
-input[type="text"] {
+input[type="text"].field-input {
   height: 35px;
   outline: none;
   background-color: $background !important;
@@ -15,6 +15,18 @@ input[type="text"] {
   border-radius: 5px;
   font-family: $roboto;
   font-size: 16px;
+  font-weight: 400;
+  color: $text;
+}
+
+input[type="text"].message-input {
+  height: 50px;
+  flex: 1;
+  outline: none;
+  border: none;
+  background-color: $background !important;
+  font-family: $roboto;
+  font-size: 18px;
   font-weight: 400;
   color: $text;
 }

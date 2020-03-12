@@ -14,6 +14,9 @@ const resolvers = {
   Query: {
     ...chatsResolver.Query,
     ...messagesResolver.Query
+  },
+  Subscription: {
+    ...messagesResolver.Subscription
   }
 };
 

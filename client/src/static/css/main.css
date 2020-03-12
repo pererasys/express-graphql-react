@@ -221,6 +221,12 @@ body,
   border-bottom-color: #222222;
 }
 
+.top-border {
+  border-top-style: solid;
+  border-top-width: 0.5px;
+  border-top-color: #222222;
+}
+
 .right-border {
   border-right-style: solid;
   border-right-width: 0.5px;
@@ -315,7 +321,7 @@ body,
   background-color: #181818;
 }
 
-input[type="text"] {
+input[type="text"].field-input {
   height: 35px;
   outline: none;
   background-color: #181818 !important;
@@ -325,6 +331,20 @@ input[type="text"] {
   border-radius: 5px;
   font-family: "Roboto", serif;
   font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+input[type="text"].message-input {
+  height: 50px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  outline: none;
+  border: none;
+  background-color: #181818 !important;
+  font-family: "Roboto", serif;
+  font-size: 18px;
   font-weight: 400;
   color: #ffffff;
 }
@@ -347,7 +367,7 @@ input[type="text"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 5px;
+  border-radius: 2.5px;
   text-transform: uppercase;
   margin: 5px 0px 5px 0px;
   font-size: 18px;
@@ -359,9 +379,17 @@ input[type="text"] {
   cursor: pointer;
 }
 
+.btn-no-style {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .btn:disabled,
 button[disabled] {
   opacity: 0.5;
+  cursor: initial !important;
 }
 
 .btn:focus {

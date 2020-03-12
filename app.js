@@ -9,11 +9,12 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const { createServer } = require("http");
 const { SubscriptionServer } = require("subscriptions-transport-ws");
+const { makeExecutableSchema } = require("graphql-tools");
 const { execute, subscribe } = require("graphql");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const auth = require("./middleware/authentication");
+const authenticate = require("./middleware/authentication");
 const schema = require("./graphql/schema/index");
 const resolvers = require("./graphql/resolvers/index");
 
@@ -22,8 +23,6 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(cors());
-
-app.use(auth);
 
 const server = new ApolloServer({
   typeDefs: schema,
@@ -37,22 +36,26 @@ const server = new ApolloServer({
     if (connection) {
       return { req, connection };
     }
-    return { req };
+    const request = authenticate({ req });
+    return { req: request };
   },
   playground: true,
-  introspection: true
+  introspection: true,
+  uploads: false
 });
 
 server.applyMiddleware({ app, path: "/graphql" });
 
 const subscriptionServer = createServer(app);
 
+const subSchema = makeExecutableSchema({ typeDefs: schema, resolvers });
+
 subscriptionServer.listen(3001, () => {
   new SubscriptionServer(
     {
       execute,
       subscribe,
-      schema
+      schema: subSchema
     },
     {
       server: subscriptionServer,
