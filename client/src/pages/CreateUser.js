@@ -37,7 +37,7 @@ const CreateUser = props => {
   return (
     <div className="flexc full center alt-background">
       <div className="flexc full-border new-user-content rounded p-3">
-        <h2 className="upper-case text-center">choose a username</h2>
+        <h2 className="upper-case text-center m-v-1">choose a username</h2>
         <p className="body-text-2">
           Just a simple chat app built with NodeJS, GraphQL, and React.
         </p>
